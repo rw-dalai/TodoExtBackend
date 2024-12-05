@@ -1,0 +1,59 @@
+@startuml
+
+
+abstract class BaseEntity <<Abstract>> {
+  Id: int
+  Guid: string
+  CreatedAt: DateTime
+  UpdatedAt: DateTime
+}
+
+
+enum Priorty {
+  HIGH
+  MEDIUM
+  LOW
+}
+
+
+class User <<Entity>> {
+  Name: string
+  Email: string
+  Address: Address
+}
+
+class Address <<Value Object>> {
+
+  Street: string;
+  City: string;
+  Country: string
+}
+
+class Category <<Entity>> {
+  Name: string
+  Description: string
+}
+
+class TodoItem <<Entity>> {
+  Title: string
+  Description: string
+  Category: Category
+  DueAt: DateTime
+}
+
+class TodoTask <<Entity>> {
+  Title: string
+  isCompleted: boolean
+  DueAt: DateTime
+}
+
+BaseEntity <|-- User
+BaseEntity <|-- Category
+
+User "1" --> "1" Address
+User "1" --> "0..n" Category
+Category "1" --> "0..n" TodoItem
+TodoItem "1" --> "0..n" TodoTask
+
+
+@enduml
