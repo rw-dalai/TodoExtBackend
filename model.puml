@@ -32,6 +32,7 @@ class Address <<Value Object>> {
 class Category <<Entity>> {
   Name: string
   Description: string
+  Owner: User
 }
 
 class TodoItem <<Entity>> {
@@ -39,21 +40,24 @@ class TodoItem <<Entity>> {
   Description: string
   Category: Category
   DueAt: DateTime
+  TodoTasks: List
 }
 
 class TodoTask <<Entity>> {
   Title: string
   isCompleted: boolean
   DueAt: DateTime
+  TodoItem: TodoItem
+  
 }
 
 BaseEntity <|-- User
 BaseEntity <|-- Category
 
 User "1" --> "1" Address
-User "1" --> "0..n" Category
-Category "1" --> "0..n" TodoItem
-TodoItem "1" --> "0..n" TodoTask
+User "1" <-- "0..n" Category
+Category "1" <-- "0..n" TodoItem
+TodoItem "1" <--> "0..n" TodoTask
 
 
 @enduml
