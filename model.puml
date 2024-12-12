@@ -32,6 +32,7 @@ class Address <<Value Object>> {
 class Category <<Entity>> {
   Name: string
   Description: string
+  Category: Category
   Owner: User
 }
 
@@ -53,6 +54,8 @@ class TodoTask <<Entity>> {
 
 BaseEntity <|-- User
 BaseEntity <|-- Category
+BaseEntity <|-- TodoItem
+BaseEntity <|-- TodoTask
 
 User "1" --> "1" Address
 User "1" <-- "0..n" Category

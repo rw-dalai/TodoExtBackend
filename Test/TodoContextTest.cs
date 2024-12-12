@@ -7,6 +7,9 @@ namespace Todo2Backend.Test;
 
 public class TodoContextTest
 {
+    // Test Fixtures
+    // ..
+    
     private TodoContext TodoContext()
     {
         // Setup SQLite In-Memory Database
@@ -15,10 +18,10 @@ public class TodoContextTest
          
         // Setup Database Options like Logging for easier debugging
         var options = new DbContextOptionsBuilder<TodoContext>()
-        .UseSqlite(connection)
-        .EnableSensitiveDataLogging()
-        .LogTo(Console.WriteLine)
-        .Options;
+            .UseSqlite(connection)
+            .EnableSensitiveDataLogging()
+            .LogTo(Console.WriteLine)
+            .Options;
          
         // Create the DbContext
         var db = new TodoContext(options);
@@ -28,7 +31,6 @@ public class TodoContextTest
         db.Database.EnsureCreated();
          
         // Seed for testing
-        // 
          
         // Return the Database Context
         return db;
@@ -42,4 +44,8 @@ public class TodoContextTest
         // If there are any issues with our entity configurations, this will fail.
         TodoContext();
     }
+    
+    
+    // Create, Update, Delete Test
+    // ...
 }
